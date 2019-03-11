@@ -16,7 +16,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 
-public class Main {
+public class Demo {
 
     public static void main(String[] args) throws IOException {
         String csvPath = args[0];
