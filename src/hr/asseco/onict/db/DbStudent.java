@@ -4,7 +4,10 @@ import hr.asseco.onict.model.Student;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 public class DbStudent {
 
@@ -35,34 +38,35 @@ public class DbStudent {
 
     public Student readStudent (String jmbag) {
         return this.studentsMap.get(jmbag);
+
+        /*
+        Optional<Student> student = studentsMap.entrySet().stream()
+                .filter(element ->
+                        element.getValue().getJmbag().equals(jmbag))
+                .map(e -> e.getValue())
+                .findFirst();
+
+        if (student.isPresent()) return student.get();
+        return null;
+        */
     }
 
     public List<Student> filterGrade (Short grade, String condition) {
-        List<Student> result = new ArrayList<>();
-
-        for (String jmbag : studentsMap.keySet()) {
-            Student check = studentsMap.get(jmbag);
-            if (check.getOcjena().compareTo(grade) > 0 && "g".equals(condition)
-                    || check.getOcjena().compareTo(grade) < 0 && "l".equals(condition)
-                    || check.getOcjena().compareTo(grade) == 0 && "e".equals(condition)) {
-                result.add(check);
-            }
-        }
-
-        return result;
+        return studentsMap.entrySet().stream()
+                .filter(element ->
+                        element.getValue().getOcjena().compareTo(grade) > 0 && "g".equals(condition) ||
+                        element.getValue().getOcjena().compareTo(grade) < 0 && "l".equals(condition) ||
+                        element.getValue().getOcjena().compareTo(grade) == 0 && "e".equals(condition))
+                .map(Map.Entry::getValue)
+                .collect(Collectors.toList());
     }
 
     public List<Student> filterName (String nameStartsWith) {
-        List<Student> result = new ArrayList<>();
-
-        for (String jmbag : studentsMap.keySet()) {
-            Student check = studentsMap.get(jmbag);
-            if (check.getIme().toLowerCase().startsWith(nameStartsWith.toLowerCase())) {
-                result.add(check);
-            }
-        }
-
-        return result;
+        return studentsMap.entrySet().stream()
+                .filter(element ->
+                        element.getValue().getIme().toLowerCase().startsWith(nameStartsWith.toLowerCase()))
+                .map(Map.Entry::getValue)
+                .collect(Collectors.toList());
     }
 
 }
