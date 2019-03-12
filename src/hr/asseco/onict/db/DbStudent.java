@@ -2,10 +2,8 @@ package hr.asseco.onict.db;
 
 import hr.asseco.onict.model.Student;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
@@ -15,7 +13,7 @@ public class DbStudent {
 
     private static DbStudent instance;
 
-    private DbStudent() {};
+    private DbStudent() {}
 
     public static DbStudent getInstance() {
         if(instance == null){

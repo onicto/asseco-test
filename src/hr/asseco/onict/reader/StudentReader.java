@@ -6,6 +6,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public interface StudentReader {
 
-    public ConcurrentHashMap<String, Student> readStudentsToMap(String path);
+    ConcurrentHashMap<String, Student> readStudentsToMap(String path);
 
 }

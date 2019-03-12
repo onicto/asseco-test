@@ -19,7 +19,7 @@ public class CallableRead implements Callable {
         if (student == null) {
             System.out.println("Student s JMBAG-om "+jmbag+" nije pronađen");
         }
-        System.out.println(student.toString());
+        System.out.println(student);
         return null;
     }
 }

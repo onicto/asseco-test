@@ -13,12 +13,12 @@ public class StudentCSVReader implements StudentReader {
     @Override
     public ConcurrentHashMap<String, Student> readStudentsToMap(String path) {
         String line;
-        ConcurrentHashMap<String,Student> initialMap = new ConcurrentHashMap<String, Student>();
+        ConcurrentHashMap<String,Student> initialMap = new ConcurrentHashMap<>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
 
             while ((line = br.readLine()) != null) {
-                String str[] = line.split(";");
+                String[] str = line.split(";");
                 for (int i = 1; i < str.length; i++) {
                     String jmbag = str[0];
                     String ime = str[1];

@@ -7,15 +7,15 @@ import java.util.concurrent.Callable;
 
 public class CallableCreate implements Callable {
 
-    private Student newStudet;
+    private Student newStudent;
 
-    public CallableCreate(Student newStudet) {
-        this.newStudet = newStudet;
+    public CallableCreate(Student newStudent) {
+        this.newStudent = newStudent;
     }
 
     @Override
     public Void call() {
-        DbStudent.getInstance().createStudent(newStudet);
+        DbStudent.getInstance().createStudent(newStudent);
         System.out.println("Student uspješno kreiran.");
         return null;
     }
